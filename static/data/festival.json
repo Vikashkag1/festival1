@@ -1,0 +1,251 @@
+[
+  {
+    "id": "diwali",
+    "name": "Diwali",
+    "short_description": "The Festival of Lights celebrates the victory of light over darkness and good over evil.",
+    "sections": [
+      {
+        "title": "What is Diwali?",
+        "media_type": "image",
+        "media": "diwali-lights.jpg",
+        "content": [
+          "Diwali, also known as Deepavali, is one of India's most significant festivals. The name 'Diwali' comes from the Sanskrit word 'Deepavali' meaning 'row of lights'.",
+          "This five-day festival usually falls between October and November, commemorating the victory of light over darkness and good over evil."
+        ]
+      },
+      {
+        "title": "Religious Significance",
+        "media_type": "image",
+        "media": "diwali-puja.jpg",
+        "content": [
+          "For Hindus, Diwali marks Lord Rama's return to Ayodhya after defeating the demon king Ravana. People lit oil lamps (diyas) to guide his path home.",
+          "Sikhs celebrate Bandi Chhor Divas, commemorating the release of Guru Hargobind from imprisonment. Jains celebrate it as the day Lord Mahavira attained nirvana.",
+          "In many regions, Diwali also honors Lakshmi, the goddess of wealth and prosperity, with special pujas (prayers) to invite her blessings."
+        ]
+      },
+      {
+        "title": "Celebrations and Customs",
+        "media_type": "video",
+        "media": "diwali-celebrations.mp4",
+        "content": [
+          "Homes and businesses are thoroughly cleaned and decorated with colorful rangoli patterns, flowers, and diyas. Families wear new clothes and exchange gifts and sweets.",
+          "The night sky comes alive with spectacular fireworks displays, symbolizing the victory of light over darkness.",
+          "Families gather for elaborate feasts featuring traditional sweets like ladoos, barfis, and jalebi, as well as savory snacks like samosas and pakoras."
+        ]
+      },
+      {
+        "title": "Regional Variations",
+        "media_type": "image",
+        "media": "diwali-variations.jpg",
+        "content": [
+          "In North India, Diwali celebrates Lord Rama's return to Ayodhya, while in South India, it commemorates Lord Krishna's victory over the demon Narakasura.",
+          "In Gujarat, the festival marks the beginning of the new year, and in Bengal, it's associated with the worship of Goddess Kali.",
+          "Despite these regional differences, the spirit of Diwali—celebrating light, knowledge, and goodness—remains universal across India."
+        ]
+      }
+    ],
+    "quiz": {
+      "festival_name": "Diwali",
+      "questions": [
+        {
+          "id": "d1",
+          "question": "What does the name 'Diwali' mean?",
+          "options": ["Festival of Colors", "Row of Lights", "Harvest Celebration", "Dance of Gods"],
+          "correct": "Row of Lights"
+        },
+        {
+          "id": "d2",
+          "question": "Which deity is primarily worshipped during Diwali for wealth and prosperity?",
+          "options": ["Lord Ganesha", "Goddess Lakshmi", "Lord Shiva", "Lord Vishnu"],
+          "correct": "Goddess Lakshmi"
+        },
+        {
+          "id": "d3",
+          "question": "In Hindu mythology, Diwali celebrates the return of which deity to Ayodhya?",
+          "options": ["Lord Krishna", "Lord Rama", "Lord Shiva", "Lord Hanuman"],
+          "correct": "Lord Rama"
+        },
+        {
+          "id": "d4",
+          "question": "What are the small oil lamps lit during Diwali called?",
+          "media_type": "image",
+          "media": "diwali-diyas.jpg",
+          "options": ["Agarbattis", "Rangolis", "Diyas", "Torans"],
+          "correct": "Diyas"
+        },
+        {
+          "id": "d5",
+          "question": "Diwali usually falls in which months?",
+          "options": ["August-September", "October-November", "December-January", "March-April"],
+          "correct": "October-November"
+        }
+      ]
+    }
+  },
+  {
+    "id": "holi",
+    "name": "Holi",
+    "short_description": "The Festival of Colors celebrates the arrival of spring and the triumph of good over evil.",
+    "sections": [
+      {
+        "title": "What is Holi?",
+        "media_type": "image",
+        "media": "holi-celebration.jpg",
+        "content": [
+          "Holi is a vibrant Hindu festival celebrated across India and Nepal, marking the arrival of spring. It's popularly known as the 'Festival of Colors' or the 'Festival of Love'.",
+          "This joyous celebration typically takes place in March, on the full moon day of the Hindu lunar month of Phalguna, and symbolizes the victory of good over evil."
+        ]
+      },
+      {
+        "title": "Mythological Origins",
+        "media_type": "image",
+        "media": "holi-holika.jpg",
+        "content": [
+          "The most popular legend behind Holi is the story of Prahlad and Holika. Prahlad was a devotee of Lord Vishnu, while his father, the demon king Hiranyakashipu, wanted everyone to worship him instead.",
+          "When Prahlad refused, Hiranyakashipu ordered his sister Holika, who had a boon to remain unharmed by fire, to sit in a pyre with Prahlad. Miraculously, Holika was burned while Prahlad was saved by his devotion.",
+          "The ritual of Holika Dahan, burning bonfires on the eve of Holi, commemorates this victory of good over evil."
+        ]
+      },
+      {
+        "title": "Festivities and Traditions",
+        "media_type": "video",
+        "media": "holi-playing.mp4",
+        "content": [
+          "Holi celebrations begin with Holika Dahan, where people gather around a bonfire, perform rituals, and pray for the destruction of evil forces.",
+          "The next day, known as Rangwali Holi, people smear each other with colors (gulal), spray colored water, and dance to festive music. Traditional drums (dholaks) add rhythm to the celebrations.",
+          "Special Holi delicacies include gujiya (sweet dumplings), thandai (a spiced milk drink, sometimes infused with bhang), and various savory snacks."
+        ]
+      },
+      {
+        "title": "Cultural Significance",
+        "media_type": "image",
+        "media": "holi-significance.jpg",
+        "content": [
+          "Holi breaks down social barriers, as people from all walks of life come together to celebrate. The phrase 'Bura na mano, Holi hai' (Don't feel offended, it's Holi) encapsulates this spirit.",
+          "The festival also celebrates the divine love of Radha and Krishna. According to legend, young Krishna, jealous of Radha's fair complexion, complained to his mother. She suggested he apply color to Radha's face, which led to their divine romance.",
+          "Today, Holi has gained international popularity, with celebrations taking place across the world as a symbol of love, equality, and the universal human desire for joy and connection."
+        ]
+      }
+    ],
+    "quiz": {
+      "festival_name": "Holi",
+      "questions": [
+        {
+          "id": "h1",
+          "question": "Why is Holi known as the 'Festival of Colors'?",
+          "options": ["Because it marks the beginning of colorful spring season", "Because people throw colored powders and water on each other", "Because colorful decorations are hung in temples", "Because it involves elaborate rangoli making"],
+          "correct": "Because people throw colored powders and water on each other"
+        },
+        {
+          "id": "h2",
+          "question": "What is celebrated on the evening before the main day of Holi?",
+          "options": ["Rang Panchami", "Holika Dahan", "Lathmar Holi", "Dhulandi"],
+          "correct": "Holika Dahan"
+        },
+        {
+          "id": "h3",
+          "question": "Which Hindu deity is particularly associated with playful Holi celebrations?",
+          "media_type": "image",
+          "media": "holi-krishna.jpg",
+          "options": ["Lord Shiva", "Lord Krishna", "Lord Ganesha", "Lord Rama"],
+          "correct": "Lord Krishna"
+        },
+        {
+          "id": "h4",
+          "question": "In which season is Holi typically celebrated?",
+          "options": ["Summer", "Autumn", "Winter", "Spring"],
+          "correct": "Spring"
+        },
+        {
+          "id": "h5",
+          "question": "What is 'thandai', commonly consumed during Holi?",
+          "options": ["A sweet dumpling", "A spiced milk drink", "A savory snack", "A type of colored powder"],
+          "correct": "A spiced milk drink"
+        }
+      ]
+    }
+  },
+  {
+    "id": "harvest",
+    "name": "Harvest Festivals",
+    "short_description": "Regional harvest festivals like Pongal, Lohri, Bihu, and Uttarayan celebrate agricultural abundance and seasonal transitions.",
+    "sections": [
+      {
+        "title": "Harvest Festivals of India",
+        "media_type": "image",
+        "media": "harvest-collage.jpg",
+        "content": [
+          "India, being an agrarian society, celebrates numerous harvest festivals throughout the country. These festivals mark the harvest season when farmers express gratitude for a successful yield.",
+          "Despite regional variations in names and specific customs, all harvest festivals share the common themes of thanksgiving, community celebration, and honoring agricultural traditions."
+        ]
+      },
+      {
+        "title": "Pongal - South India",
+        "media_type": "image",
+        "media": "pongal-celebration.jpg",
+        "content": [
+          "Pongal is a four-day harvest festival celebrated primarily in Tamil Nadu. The name comes from the Tamil word meaning 'to boil over' or 'overflow,' symbolizing abundance and prosperity.",
+          "On the main day (Thai Pongal), people cook a special sweet rice dish called 'pongal' in a new earthen pot decorated with turmeric, flowers, and sugarcane. The moment when the rice boils over represents prosperity overflowing.",
+          "Families honor cattle during Mattu Pongal, decorating them with flowers, bells, and colored powders as recognition of their vital role in farming."
+        ]
+      },
+      {
+        "title": "Lohri and Uttarayan - North India",
+        "media_type": "video",
+        "media": "lohri-uttarayan.mp4",
+        "content": [
+          "Lohri marks the end of winter and is celebrated primarily in Punjab. Families gather around a bonfire, toss sesame seeds, jaggery, and popcorn into the flames, and sing and dance to traditional folk songs.",
+          "Uttarayan, also known as Makar Sankranti in many regions, marks the sun's northward journey. Gujarat is famous for its kite flying festival during this time, with colorful kites dotting the sky.",
+          "These festivals also involve preparing special foods like til ladoo (sesame seed sweets), chikki (jaggery brittle), and revri, believed to provide warmth during winter."
+        ]
+      },
+      {
+        "title": "Bihu - Northeast India",
+        "media_type": "image",
+        "media": "bihu-dance.jpg",
+        "content": [
+          "Magh Bihu is the harvest festival of Assam, celebrated in January. It begins with community feasting called Uruka, where people gather to prepare traditional dishes in temporary huts called meji and bhelaghar.",
+          "The next morning, these temporary structures are burned, symbolizing the end of the old cycle and beginning of new. Traditional Bihu dance performances with colorful costumes and rhythmic movements are a highlight.",
+          "Special rice cakes called pitha, wrapped in banana leaves, are prepared during this festival, showcasing the region's rice-based agricultural economy."
+        ]
+      }
+    ],
+    "quiz": {
+      "festival_name": "Harvest Festivals",
+      "questions": [
+        {
+          "id": "hf1",
+          "question": "Which of these is NOT a harvest festival of India?",
+          "options": ["Pongal", "Bihu", "Onam", "Dussehra"],
+          "correct": "Dussehra"
+        },
+        {
+          "id": "hf2",
+          "question": "In which state is Pongal primarily celebrated?",
+          "options": ["Kerala", "Karnataka", "Tamil Nadu", "Andhra Pradesh"],
+          "correct": "Tamil Nadu"
+        },
+        {
+          "id": "hf3",
+          "question": "What is the special dish prepared during Pongal festival?",
+          "media_type": "image",
+          "media": "pongal-dish.jpg",
+          "options": ["Idli", "Dosa", "Pongal Rice", "Vada"],
+          "correct": "Pongal Rice"
+        },
+        {
+          "id": "hf4",
+          "question": "Which activity is prominently associated with Uttarayan celebration in Gujarat?",
+          "options": ["Boat racing", "Kite flying", "Clay pot breaking", "Bullock cart racing"],
+          "correct": "Kite flying"
+        },
+        {
+          "id": "hf5",
+          "question": "The harvest festival of Assam is known as?",
+          "options": ["Onam", "Lohri", "Bihu", "Baisakhi"],
+          "correct": "Bihu"
+        }
+      ]
+    }
+  }
+]

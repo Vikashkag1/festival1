@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Major Indian Festivals{% endblock %}
+
+{% block content %}
+<div class="home-page">
+    <header class="text-center mb-5">
+        <h1 class="display-4">Major Indian Festivals</h1>
+        <p class="lead">Select a festival to learn more about its traditions, celebrations, and significance</p>
+    </header>
+    
+    <div class="row festival-cards">
+        <!-- Diwali Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card festival-card h-100">
+                <img src="{{ url_for('static', filename='img/diwali.jpeg') }}" class="card-img-top" alt="Diwali">
+                <div class="card-body">
+                    <h3 class="card-title">Diwali</h3>
+                    <p class="card-text">Festival of lights, celebrated with lamps, sweets, and fireworks.</p>
+                    <a href="{{ url_for('learn', festival_id='diwali') }}" class="btn btn-primary stretched-link">Learn About Diwali</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Holi Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card festival-card h-100">
+                <img src="{{ url_for('static', filename='img/holi.jpeg') }}" class="card-img-top" alt="Holi">
+                <div class="card-body">
+                    <h3 class="card-title">Holi</h3>
+                    <p class="card-text">Festival of colors, symbolizing the victory of good over evil.</p>
+                    <a href="{{ url_for('learn', festival_id='holi') }}" class="btn btn-primary stretched-link">Learn About Holi</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Eid Card -->
+        <div class="col-md-4 mb-4">
+            <div class="card festival-card h-100">
+                <img src="{{ url_for('static', filename='img/harvest_festival.png') }}" class="card-img-top" alt="Eid">
+                <div class="card-body">
+                    <h3 class="card-title">Harvest_festival</h3>
+                    <p class="card-text">Uttarayan/ Pongal/ Magh Bihu/ Lohdi</p>
+                    <a href="{{ url_for('learn', festival_id='harvest') }}" class="btn btn-primary stretched-link">Learn About harvest_festival</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mt-5">
+        <a href="{{ url_for('quiz', festival_id='all') }}" class="btn btn-outline-primary btn-lg">Take Quiz on All Festivals</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('timer-container').style.display = 'block';
+    });
+</script>
+{% endblock %}

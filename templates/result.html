@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz Results{% endblock %}
+
+{% block navbar_items %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('quiz', festival_id=festival_id) }}">Quiz</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" href="#">Results</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="result-page">
+    <header class="text-center mb-5">
+        <h1 class="display-4">Quiz Results: {{ festival_name }}</h1>
+        <p class="lead">See how well you know about {{ festival_name }}!</p>
+    </header>
+    
+    <div class="result-summary card mb-5">
+        <div class="card-body text-center">
+            <h2 class="score-title mb-4">Your Score</h2>
+            <div class="score-display">
+                <div class="score-circle">
+                    <div class="score-number">{{ result.score }}/{{ result.total }}</div>
+                </div>
+                <div class="score-percentage">{{ (result.score / result.total * 100)|round|int }}%</div>
+            </div>
+            
+            {% if result.score == result.total %}
+            <div class="alert alert-success mt-4" role="alert">
+                <h4 class="alert-heading">Perfect Score!</h4>
+                <p>Excellent job! You have shown a great understanding of {{ festival_name }}.</p>
+            </div>
+            {% elif result.score >= result.total * 0.7 %}
+            <div class="alert alert-success mt-4" role="alert">
+                <h4 class="alert-heading">Good Job!</h4>
+                <p>You have a solid understanding of {{ festival_name }}.</p>
+            </div>
+            {% elif result.score >= result.total * 0.5 %}
+            <div class="alert alert-warning mt-4" role="alert">
+                <h4 class="alert-heading">Nice Try!</h4>
+                <p>You have a basic understanding of {{ festival_name }}, but there's still more to learn.</p>
+            </div>
+            {% else %}
+            <div class="alert alert-danger mt-4" role="alert">
+                <h4 class="alert-heading">Keep Learning!</h4>
+                <p>You might want to revisit the learning materials for {{ festival_name }}.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="result-details">
+        <h3 class="mb-4">Question Review</h3>
+        
+        <div class="accordion" id="questionReview">
+            {% for item in result.results %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading{{ loop.index }}">
+                    <button class="accordion-button {{ 'collapsed' if item.is_correct else '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ loop.index }}" aria-expanded="{{ 'false' if item.is_correct else 'true' }}" aria-controls="collapse{{ loop.index }}">
+                        <div class="d-flex w-100 justify-content-between align-items-center">
+                            <span>Question {{ loop.index }}</span>
+                            {% if item.is_correct %}
+                            <span class="badge bg-success">Correct</span>
+                            {% else %}
+                            <span class="badge bg-danger">Incorrect</span>
+                            {% endif %}
+                        </div>
+                    </button>
+                </h2>
+                <div id="collapse{{ loop.index }}" class="accordion-collapse collapse {{ '' if item.is_correct else 'show' }}" aria-labelledby="heading{{ loop.index }}" data-bs-parent="#questionReview">
+                    <div class="accordion-body">
+                        <h5>{{ item.question }}</h5>
+                        
+                        <div class="options-review mt-3">
+                            {% for option in item.options %}
+                            <div class="option-item mb-2 p-2 {% if option == item.correct_answer %}correct-answer{% elif option == item.user_answer and option != item.correct_answer %}wrong-answer{% endif %}">
+                                {{ option }}
+                                {% if option == item.correct_answer %}
+                                <span class="badge bg-success float-end">Correct Answer</span>
+                                {% elif option == item.user_answer and option != item.correct_answer %}
+                                <span class="badge bg-danger float-end">Your Answer</span>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <div class="action-buttons text-center mt-5">
+        <a href="{{ url_for('quiz', festival_id=festival_id) }}" class="btn btn-primary me-3">Retake Quiz</a>
+        <a href="{{ url_for('home') }}" class="btn btn-outline-primary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

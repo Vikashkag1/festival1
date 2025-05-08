@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+
+{% block title %}Learn About {{festival.name}}{% endblock %}
+
+{% block navbar_items %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link disabled" href="#">Quiz</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link disabled" href="#">Results</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="learn-page">
+    <header class="text-center mb-5">
+        <h1 class="display-4">{{ festival.name }}</h1>
+        <p class="lead">{{ festival.short_description }}</p>
+    </header>
+    
+    <!-- Learning Progress Bar -->
+    <div class="progress mb-4" style="height: 10px;">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="learning-progress"></div>
+    </div>
+    <p class="text-center mb-4"><span id="current-step">1</span> of <span id="total-steps">{{ festival.sections|length }}</span></p>
+    
+    <!-- Learning Content Container -->
+    <div class="learning-container">
+        {% for section in festival.sections %}
+        <div class="learning-section" id="section-{{ loop.index0 }}" {% if not loop.first %}style="display: none;"{% endif %}>
+            <h2 class="mb-4">{{ section.title }}</h2>
+            
+            <div class="row">
+                <!-- Media Column -->
+                <div class="col-md-6">
+                    {% if section.media_type == 'image' %}
+                    <div class="media-container">
+                        <img src="{{ url_for('static', filename='images/' + section.media) }}" class="img-fluid rounded" alt="{{ section.title }}">
+                    </div>
+                    {% elif section.media_type == 'video' %}
+                    <div class="media-container ratio ratio-16x9">
+                        <video controls>
+                            <source src="{{ url_for('static', filename='videos/' + section.media) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <!-- Content Column -->
+                <div class="col-md-6">
+                    <div class="learning-content">
+                        {% for paragraph in section.content %}
+                        <p>{{ paragraph }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <!-- Final Section for Quiz Transition -->
+        <div class="learning-section text-center" id="section-final" style="display: none;">
+            <h2 class="mb-4">Congratulations!</h2>
+            <p class="lead">You have completed learning about {{ festival.name }}.</p>
+            <p>Now, test your knowledge with a quiz.</p>
+            <div class="mt-4">
+                <a href="{{ url_for('quiz', festival_id=festival.id) }}" class="btn btn-primary btn-lg">Take Quiz</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation Buttons -->
+    <div class="learning-navigation mt-4 d-flex justify-content-between">
+        <button type="button" class="btn btn-outline-primary" id="prev-button" disabled>Previous</button>
+        <button type="button" class="btn btn-primary" id="next-button">Next</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Variables
+        const totalSections = {{ festival.sections|length }};
+        let currentSection = 0;
+        
+        // Elements
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const progressBar = document.getElementById('learning-progress');
+        const currentStepElement = document.getElementById('current-step');
+        
+        // Update progress function
+        function updateProgress() {
+            // Update progress bar
+            const progressPercentage = (currentSection / totalSections) * 100;
+            progressBar.style.width = progressPercentage + '%';
+            progressBar.setAttribute('aria-valuenow', progressPercentage);
+            
+            // Update current step text
+            currentStepElement.textContent = currentSection + 1;
+            
+            // Update buttons state
+            prevButton.disabled = currentSection === 0;
+            
+            // Handle the final section
+            if (currentSection === totalSections) {
+                nextButton.style.display = 'none';
+            } else {
+                nextButton.style.display = 'block';
+                nextButton.textContent = currentSection === totalSections - 1 ? 'Finish' : 'Next';
+            }
+        }
+        
+        // Show section function
+        function showSection(index) {
+            // Hide all sections
+            document.querySelectorAll('.learning-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            if (index < totalSections) {
+                // Show the current section
+                document.getElementById('section-' + index).style.display = 'block';
+            } else {
+                // Show the final section
+                document.getElementById('section-final').style.display = 'block';
+            }
+            
+            // Update progress
+            updateProgress();
+        }
+        
+        // Event listeners
+        prevButton.addEventListener('click', function() {
+            if (currentSection > 0) {
+                currentSection--;
+                showSection(currentSection);
+            }
+        });
+        
+        nextButton.addEventListener('click', function() {
+            if (currentSection < totalSections) {
+                currentSection++;
+                showSection(currentSection);
+            }
+        });
+        
+        // Initialize
+        updateProgress();
+    });
+</script>
+{% endblock %}

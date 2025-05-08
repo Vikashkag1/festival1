@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}Quiz on {{ festival_id }}{% endblock %}
+
+{% block navbar_items %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link active" href="#">Quiz</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link disabled" href="#">Results</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<div class="quiz-page">
+    <header class="text-center mb-5">
+        <h1 class="display-4">Quiz: {% if festival_id == 'all' %}All Festivals{% else %}{{ quiz.festival_name }}{% endif %}</h1>
+        <p class="lead">Test your knowledge about {% if festival_id == 'all' %}major Indian festivals{% else %}{{ quiz.festival_name }}{% endif %}.</p>
+    </header>
+    
+    <div class="quiz-container">
+        <form action="{{ url_for('submit_quiz', festival_id=festival_id) }}" method="post" id="quiz-form">
+            <!-- Quiz Progress -->
+            <div class="progress mb-4" style="height: 10px;">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="quiz-progress"></div>
+            </div>
+            <p class="text-center mb-4">Question <span id="current-question">1</span> of <span id="total-questions">{{ quiz.questions|length }}</span></p>
+            
+            <!-- Questions -->
+            <div class="questions-container">
+                {% for question in quiz.questions %}
+                <div class="question-card" id="question-{{ loop.index0 }}" {% if not loop.first %}style="display: none;"{% endif %}>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="question-number">Question {{ loop.index }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ question.question }}</h5>
+                            
+                            {% if question.media %}
+                            <div class="question-media mb-3">
+                                {% if question.media_type == 'image' %}
+                                <img src="{{ url_for('static', filename='images/' + question.media) }}" class="img-fluid rounded" alt="Question Image">
+                                {% elif question.media_type == 'video' %}
+                                <div class="ratio ratio-16x9">
+                                    <video controls>
+                                        <source src="{{ url_for('static', filename='videos/' + question.media) }}" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                            
+                            <div class="options-list">
+                                {% for option in question.options %}
+                                <div class="form-check option-item mb-2">
+                                    <input class="form-check-input question-option" type="radio" name="{{ question.id }}" id="q{{ question.id }}-{{ loop.index0 }}" value="{{ option }}" required>
+                                    <label class="form-check-label" for="q{{ question.id }}-{{ loop.index0 }}">
+                                        {{ option }}
+                                    </label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="quiz-navigation mt-4 d-flex justify-content-between">
+                <button type="button" class="btn btn-outline-primary" id="prev-question-btn" disabled>Previous</button>
+                <button type="button" class="btn btn-primary" id="next-question-btn">Next</button>
+                <button type="submit" class="btn btn-success" id="submit-quiz-btn" style="display: none;">Submit Quiz</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Variables
+        const totalQuestions = {{ quiz.questions|length }};
+        let currentQuestion = 0;
+        
+        // Elements
+        const prevButton = document.getElementById('prev-question-btn');
+        const nextButton = document.getElementById('next-question-btn');
+        const submitButton = document.getElementById('submit-quiz-btn');
+        const progressBar = document.getElementById('quiz-progress');
+        const currentQuestionElement = document.getElementById('current-question');
+        const quizForm = document.getElementById('quiz-form');
+        
+        // Update progress function
+        function updateProgress() {
+            // Update progress bar
+            const progressPercentage = ((currentQuestion + 1) / totalQuestions) * 100;
+            progressBar.style.width = progressPercentage + '%';
+            progressBar.setAttribute('aria-valuenow', progressPercentage);
+            
+            // Update current question text
+            currentQuestionElement.textContent = currentQuestion + 1;
+            
+            // Update buttons state
+            prevButton.disabled = currentQuestion === 0;
+            
+            // Show/hide next and submit buttons
+            if (currentQuestion === totalQuestions - 1) {
+                nextButton.style.display = 'none';
+                submitButton.style.display = 'block';
+            } else {
+                nextButton.style.display = 'block';
+                submitButton.style.display = 'none';
+            }
+        }
+        
+        // Show question function
+        function showQuestion(index) {
+            // Hide all questions
+            document.querySelectorAll('.question-card').forEach(question => {
+                question.style.display = 'none';
+            });
+            
+            // Show the current question
+            document.getElementById('question-' + index).style.display = 'block';
+            
+            // Update progress
+            updateProgress();
+        }
+        
+        // Validate current question
+        function validateCurrentQuestion() {
+            const currentQuestionElement = document.getElementById('question-' + currentQuestion);
+            const options = currentQuestionElement.querySelectorAll('.question-option');
+            let isAnswered = false;
+            
+            options.forEach(option => {
+                if (option.checked) {
+                    isAnswered = true;
+                }
+            });
+            
+            return isAnswered;
+        }
+        
+        // Event listeners
+        prevButton.addEventListener('click', function() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+        
+        nextButton.addEventListener('click', function() {
+            if (validateCurrentQuestion()) {
+                if (currentQuestion < totalQuestions - 1) {
+                    currentQuestion++;
+                    showQuestion(currentQuestion);
+                }
+            } else {
+                alert('Please select an answer before proceeding.');
+            }
+        });
+        
+        // Form submission
+        quizForm.addEventListener('submit', function(event) {
+            if (!validateCurrentQuestion()) {
+                event.preventDefault();
+                alert('Please select an answer for the current question.');
+            }
+        });
+        
+        // Initialize
+        showQuestion(0);
+    });
+</script>
+{% endblock %}

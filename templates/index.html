@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Major Indian Festivals{% endblock %}
+
+{% block navbar_items %}
+<!-- No navbar on landing page -->
+{% endblock %}
+
+{% block content %}
+<div class="landing-container">
+    <div class="landing-content text-center">
+        <h1 class="display-3 mb-4">Discover Major Indian Festivals</h1>
+        <p class="lead mb-5">Learn about the vibrant and colorful festivals of India through an interactive journey.</p>
+        
+        <!-- <div class="landing-image-container">
+            <div class="landing-image-overlay"></div>
+            <div class="landing-images">
+                <img src="{{ url_for('static', filename='img/diwali_landing.avif') }}" alt="Diwali" class="landing-img img-1">
+                <img src="{{ url_for('static', filename='img/holi_landing.avif') }}" alt="Holi" class="landing-img img-2">
+                <img src="{{ url_for('static', filename='img/harvest_landing.webp') }}" alt="Harvest Festival" class="landing-img img-3">
+            </div>
+        </div> -->
+        
+        <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg start-btn mt-4" id="start-button">
+            <span>Start Learning</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Disable timer on landing page and only start it when user clicks "Start"
+    document.addEventListener('DOMContentLoaded', function() {
+        // Hide timer on landing page
+        document.getElementById('timer-container').style.display = 'none';
+        
+        // Start timer when the button is clicked
+        document.getElementById('start-button').addEventListener('click', function() {
+            // Initialize timer start time in local storage
+            localStorage.setItem('timerStartTime', Date.now().toString());
+        });
+    });
+</script>
+{% endblock %}
